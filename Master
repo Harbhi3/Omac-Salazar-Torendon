@@ -117,3 +117,17 @@ def lap():
         i=0
         create_label((str(time_elapsed3).zfill(2)+":"+str(time_elapsed2).zfill(2)+":"+str(time_elapsed1).zfill(2)), 20+(110*i), 400+(j*50))
     i+=1
+
+clock_frame=Label(text="00:00:00", bg="white", fg="black", font=("monotxt", 75, "bold"))
+start_button=Button(text="START", bg="pink", fg="black", borderwidth=10, command=start, font=("monotxt", 30, "bold"))
+stop_button=Button(text="STOP", bg="pink", fg="black", borderwidth=10, command=stop, font=("monotxt", 30, "bold"))
+resume_button=Button(text="RESUME", bg="pink", fg="black", borderwidth=10, command=start, font=("monotxt", 30, "bold"))
+lap_button=Button(text="LAP", bg="pink", fg="black", borderwidth=10, command=lap, font=("monotxt", 30, "bold"))
+reset_button=Button(text="RESET", bg="pink", fg="black", borderwidth=10, command=clear, font=("monotxt", 30, "bold"))
+
+start_button.place(x=20, y=300, width=300, height=100)
+lap_button.place(x=660, y=300, width=300, height=100)
+reset_button.place(x=340, y=300, width=300, height=100)
+clock_frame.place(x=200, y=50, width=600, height=200)
+
+root.mainloop()
