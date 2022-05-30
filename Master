@@ -47,4 +47,11 @@ def start():
                     clock_frame.config(text=(str(time_elapsed3).zfill(2)+":"+str(time_elapsed2).zfill(2)+":"+str(time_elapsed1).zfill(2)))
     self_job=root.after(900,start)
 
+def stop():
+    global self_job
+    if self_job is not None:
+        root.after_cancel(self_job)
+        self_job=None
+    stop_button.place_forget()
+    resume_button.place(x=20, y=300, width=300, height=100)
 
