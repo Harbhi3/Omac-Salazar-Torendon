@@ -15,7 +15,7 @@ i=0
 j=0
 
 def create_label(text,_x,_y):
-    label=Label(root, text=text, fg="white", bg="white", font=("default", 10, "bold"))
+    label=Label(root, text=text, fg="black", bg="white", font=("default", 10, "bold"))
     label.place(x=_x, y=_y, width=100, height=45)
 
 def start():
