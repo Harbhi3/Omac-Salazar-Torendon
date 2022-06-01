@@ -128,7 +128,10 @@ def resize(e):
     resume_button.config(font=("monotxt",int(size)))
     lap_button.config(font=("monotxt",int(size)))
     reset_button.config(font=("monotxt",int(size)))
-    clock_frame.config(font=("monotxt",int(size+30),"bold"))
+    
+    height_size=e.height-10
+    if e.height <= 300:
+        clock_frame.config(font=("monotxt",height_size,"bold"))
  
 
 clock_frame=Label(text="00:00:00", bg="white", fg="black" )
