@@ -1,147 +1,169 @@
 from tkinter import *
 import time
 
-root=Tk()
+root = Tk()
 root.configure(background=("white"))
 root.title("Stopwatch")
 root.geometry("500x200")
 
-Grid.columnconfigure(root,index=(0,2,4),weight=1)
+Grid.columnconfigure(root, index=(0, 2, 4), weight=1)
 Grid.rowconfigure(root, index=0, weight=1)
 
-time_elapsed1=-1
-time_elapsed2=0
-time_elapsed3=0
-time1=0
-time2=0
-i=0
-j=0
+time_elapsed1 = -1
+time_elapsed2 = 0
+time_elapsed3 = 0
+time1 = 0
+time2 = 0
+i = 0
+j = 0
 
-def create_label(text,_x,_y):
-    label=Label(root, text=text, fg="white", bg="black", font=("default", 10, "bold"))
-    label.grid(row=3, column=0)
+middleframe = Frame(root)
+middleframe.grid(row=3, column=0, columnspan=5)
+
+def create_label(text, _x, _y):
+
+    label = Label(middleframe, text=text, fg="white", bg="black", font=("default", 10, "bold"))
+    label.pack(side=LEFT, padx=2)
+
 
 def start():
     start_button.grid_forget()
     resume_button.grid_forget()
-    stop_button.grid(row=1, column=0, sticky="nsew" )
+    stop_button.grid(row=1, column=0, sticky="nsew")
     global time_elapsed1, time_elapsed2, time_elapsed3, time1, self_job, time2
-    time2=int(time.time())
-    if time2!=time1:
-        time1=time2
-        if time_elapsed1<59:
-            time_elapsed1+=1
-            clock_frame.config(text=(str(time_elapsed3).zfill(2)+":"+str(time_elapsed2).zfill(2)+":"+str(time_elapsed1).zfill(2)))
+    time2 = int(time.time())
+    if time2 != time1:
+        time1 = time2
+        if time_elapsed1 < 59:
+            time_elapsed1 += 1
+            clock_frame.config(text=(str(time_elapsed3).zfill(2) + ":" + str(time_elapsed2).zfill(2) + ":" + str(
+                time_elapsed1).zfill(2)))
         else:
-            time_elapsed1=0
-            
-            if time_elapsed2<59:
-                time_elapsed2+=1
-                clock_frame.config(text=(str(time_elapsed3).zfill(2)+":"+str(time_elapsed2).zfill(2)+":"+str(time_elapsed1).zfill(2)))
+            time_elapsed1 = 0
+
+            if time_elapsed2 < 59:
+                time_elapsed2 += 1
+                clock_frame.config(text=(str(time_elapsed3).zfill(2) + ":" + str(time_elapsed2).zfill(2) + ":" + str(
+                    time_elapsed1).zfill(2)))
             else:
-                time_elapsed2=0
-                time_elapsed3+=1
-                if time_elapsed3>=24:
-                    time_elapsed1=0
-                    time_elapsed2=0
-                    time_elapsed3=0
+                time_elapsed2 = 0
+                time_elapsed3 += 1
+                if time_elapsed3 >= 24:
+                    time_elapsed1 = 0
+                    time_elapsed2 = 0
+                    time_elapsed3 = 0
                 else:
-                    time_elapsed3+=1
-                    clock_frame.config(text=(str(time_elapsed3).zfill(2)+":"+str(time_elapsed2).zfill(2)+":"+str(time_elapsed1).zfill(2)))
-    self_job=root.after(900,start)
+                    time_elapsed3 += 1
+                    clock_frame.config(text=(
+                                str(time_elapsed3).zfill(2) + ":" + str(time_elapsed2).zfill(2) + ":" + str(
+                            time_elapsed1).zfill(2)))
+    self_job = root.after(900, start)
+
 
 def stop():
     global self_job
     if self_job is not None:
         root.after_cancel(self_job)
-        self_job=None
+        self_job = None
     stop_button.grid_forget()
-    resume_button.grid(row=1, column=0, sticky="nsew" )
+    resume_button.grid(row=1, column=0, sticky="nsew")
+
 
 def resume():
     start_button.grid_forget()
     resume_button.grid_forget()
-    stop_button.grid(row=1, column=0, sticky="nsew" )
+    stop_button.grid(row=1, column=0, sticky="nsew")
     global time_elapsed1, time_elapsed2, time_elapsed3, time1, self_job, time2
-    time2=int(time.time())
-    if time2!=time1:
-        time1=time2
-        if time_elapsed1<59:
-            time_elapsed1+=1
-            clock_frame.config(text=(str(time_elapsed3).zfill(2)+":"+str(time_elapsed2).zfill(2)+":"+str(time_elapsed3).zfill(2)))
+    time2 = int(time.time())
+    if time2 != time1:
+        time1 = time2
+        if time_elapsed1 < 59:
+            time_elapsed1 += 1
+            clock_frame.config(text=(str(time_elapsed3).zfill(2) + ":" + str(time_elapsed2).zfill(2) + ":" + str(
+                time_elapsed3).zfill(2)))
         else:
-            time_elapsed1=0
-            time_elapsed2+=1
-            if time_elapsed2<59:
-                time_elapsed2+=1
-                clock_frame.config(text=(str(time_elapsed3).zfill(2)+":"+str(time_elapsed2).zfill(2)+":"+str(time_elapsed1).zfill(2)))
+            time_elapsed1 = 0
+            time_elapsed2 += 1
+            if time_elapsed2 < 59:
+                time_elapsed2 += 1
+                clock_frame.config(text=(str(time_elapsed3).zfill(2) + ":" + str(time_elapsed2).zfill(2) + ":" + str(
+                    time_elapsed1).zfill(2)))
             else:
-                time_elapsed2=0
-                time_elapsed3+=1
-                if time_elapsed3>=24:
-                    time_elapsed1=0
-                    time_elapsed2=0
-                    time_elapsed3=0
+                time_elapsed2 = 0
+                time_elapsed3 += 1
+                if time_elapsed3 >= 24:
+                    time_elapsed1 = 0
+                    time_elapsed2 = 0
+                    time_elapsed3 = 0
                 else:
-                    time_elapsed3+=1
-                    clock_frame.config(text=(str(time_elapsed3).zfill(2)+":"+str(time_elapsed2).zfill(2)+":"+str(time_elapsed1).zfill(2)))
-    self_job=root.after(900,start)
+                    time_elapsed3 += 1
+                    clock_frame.config(text=(
+                                str(time_elapsed3).zfill(2) + ":" + str(time_elapsed2).zfill(2) + ":" + str(
+                            time_elapsed1).zfill(2)))
+    self_job = root.after(900, start)
+
 
 def clear():
-      global time_elapsed1, time_elapsed2, time_elapsed3, time1, self_job, time2, label, i, j
-      try: 
-          stop()
-      except:
-          start()
-          stop()
-      clock_frame.config(text="00:00:00")
-      time_elapsed1=-1
-      time_elapsed2=0
-      time_elapsed3=0
-      time_1=0
-      time_2=0
-      i=0
-      j=0
-      wig=root.winfo_children()
-      for b in wig:
-          b.grid_forget()
-          resume_button.grid_forget()
-      start_button.grid(row=1, column=0, sticky="nsew", padx=2 )
-      lap_button.grid(row=1, column=2, sticky="nsew", padx=2)
-      reset_button.grid(row=1, column=4, sticky="nsew", padx=2)
-      clock_frame.grid(row=0, column=0, columnspan=5, sticky="nsew")
+    global time_elapsed1, time_elapsed2, time_elapsed3, time1, self_job, time2, label, i, j
+    try:
+        stop()
+    except:
+        start()
+        stop()
+    clock_frame.config(text="00:00:00")
+    time_elapsed1 = -1
+    time_elapsed2 = 0
+    time_elapsed3 = 0
+    time_1 = 0
+    time_2 = 0
+    i = 0
+    j = 0
+    wig = middleframe.winfo_children()
+    for b in wig:
+        b.pack_forget()
+        resume_button.grid_forget()
+    start_button.grid(row=1, column=0, sticky="nsew", padx=2)
+    lap_button.grid(row=1, column=2, sticky="nsew", padx=2)
+    reset_button.grid(row=1, column=4, sticky="nsew", padx=2)
+    clock_frame.grid(row=0, column=0, columnspan=5, sticky="nsew")
+
 
 def lap():
     global time_elapsed1, time_elapsed2, time_elapsed3, time1, self_job, time2, i, j
-    if i<9:
-        create_label((str(time_elapsed3).zfill(2)+":"+str(time_elapsed2).zfill(2)+":"+str(time_elapsed1).zfill(2)),20+(110*i),400+(j*50))
+    if i < 9:
+        create_label(
+            (str(time_elapsed3).zfill(2) + ":" + str(time_elapsed2).zfill(2) + ":" + str(time_elapsed1).zfill(2)),
+            20 + (110 * i), 400 + (j * 50))
     else:
-        j+=1
-        i=0
-        create_label((str(time_elapsed3).zfill(2)+":"+str(time_elapsed2).zfill(2)+":"+str(time_elapsed1).zfill(2)), 20+(110*i), 400+(j*50))
-    i+=1
+        j += 1
+        i = 0
+        create_label(
+            (str(time_elapsed3).zfill(2) + ":" + str(time_elapsed2).zfill(2) + ":" + str(time_elapsed1).zfill(2)),
+            20 + (110 * i), 400 + (j * 50))
+    i += 1
+
 
 def resize(e):
-    size= e.width/10
-    start_button.config(font=("monotxt",int(size)))
-    stop_button.config(font=("monotxt",int(size)))
-    resume_button.config(font=("monotxt",int(size)))
-    lap_button.config(font=("monotxt",int(size)))
-    reset_button.config(font=("monotxt",int(size)))
-    
-    height_size=e.height-10
+    size = e.width / 10
+    start_button.config(font=("monotxt", int(size)))
+    stop_button.config(font=("monotxt", int(size)))
+    resume_button.config(font=("monotxt", int(size)))
+    lap_button.config(font=("monotxt", int(size)))
+    reset_button.config(font=("monotxt", int(size)))
+
+    height_size = e.height - 10
     if e.height <= 300:
-        clock_frame.config(font=("monotxt",height_size,"bold"))
- 
+        clock_frame.config(font=("monotxt", height_size, "bold"))
 
-clock_frame=Label(text="00:00:00", bg="white", fg="black" )
-start_button=Button(text="START", bg="pink", fg="black", borderwidth=10, command=start)
-stop_button=Button(text="STOP", bg="pink", fg="black", borderwidth=10, command=stop)
-resume_button=Button(text="RESUME", bg="pink", fg="black", borderwidth=10, command=start)
-lap_button=Button(text="LAP", bg="pink", fg="black", borderwidth=10, command=lap)
-reset_button=Button(text="RESET", bg="pink", fg="black", borderwidth=10, command=clear)
 
-start_button.grid(row=1, column=0, sticky="nsew", padx=2 )
+clock_frame = Label(text="00:00:00", bg="white", fg="black")
+start_button = Button(text="START", bg="pink", fg="black", borderwidth=10, command=start)
+stop_button = Button(text="STOP", bg="pink", fg="black", borderwidth=10, command=stop)
+resume_button = Button(text="RESUME", bg="pink", fg="black", borderwidth=10, command=start)
+lap_button = Button(text="LAP", bg="pink", fg="black", borderwidth=10, command=lap)
+reset_button = Button(text="RESET", bg="pink", fg="black", borderwidth=10, command=clear)
+
+start_button.grid(row=1, column=0, sticky="nsew", padx=2)
 lap_button.grid(row=1, column=2, sticky="nsew", padx=2)
 reset_button.grid(row=1, column=4, sticky="nsew", padx=2)
 clock_frame.grid(row=0, column=0, columnspan=5, sticky="nsew")
