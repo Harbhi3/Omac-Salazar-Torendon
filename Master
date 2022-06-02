@@ -17,9 +17,13 @@ time2=0
 i=0
 j=0
 
+middleframe = Frame(root)
+middleframe.grid(row=3, column=0, columnspan=5)
+
 def create_label(text,_x,_y):
-    label=Label(root, text=text, fg="white", bg="black", font=("default", 10, "bold"))
-    label.grid(row=3, column=0)
+    label=Label(middleframe, text=text, fg="white", bg="black", font=("default", 10, "bold"))
+    label.pack(side=LEFT, padx=2)
+
 
 def start():
     start_button.grid_forget()
@@ -102,9 +106,9 @@ def clear():
       time_2=0
       i=0
       j=0
-      wig=root.winfo_children()
+      wig=middleframe.winfo_children()
       for b in wig:
-          b.grid_forget()
+          b.pack_forget()
           resume_button.grid_forget()
       start_button.grid(row=1, column=0, sticky="nsew", padx=2 )
       reset_button.grid(row=1, column=2, sticky="nsew", padx=2)
