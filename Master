@@ -137,6 +137,30 @@ def resize(e):
     if e.height <= 300:
         clock_frame.config(font=("monotxt",height_size,"bold"))
  
+def button_hover(e):
+    start_button["bg"] = "white"
+def button_hover_leave(e):
+    start_button["bg"] = "pink"
+
+def button_hover1(e):
+    stop_button["bg"] = "white"
+def button_hover_leave1(e):
+    stop_button["bg"] = "pink"
+
+def button_hover2(e):
+    resume_button["bg"] = "white"
+def button_hover_leave2(e):
+    resume_button["bg"] = "pink"
+
+def button_hover3(e):
+    reset_button["bg"] = "white"
+def button_hover_leave3(e):
+    reset_button["bg"] = "pink"
+
+def button_hover4(e):
+    lap_button["bg"] = "white"
+def button_hover_leave4(e):
+    lap_button["bg"] = "pink"
 
 clock_frame=Label(text="00:00:00", bg="white", fg="black" )
 start_button=Button(text="START", bg="pink", fg="black", borderwidth=10, command=start)
@@ -149,6 +173,17 @@ start_button.grid(row=1, column=0, sticky="nsew", padx=2 )
 reset_button.grid(row=1, column=2, sticky="nsew", padx=2)
 lap_button.grid(row=1, column=4, sticky="nsew", padx=2)
 clock_frame.grid(row=0, column=0, columnspan=5, sticky="nsew")
+
+start_button.bind("<Enter>", button_hover)
+start_button.bind("<Leave>", button_hover_leave)
+stop_button.bind("<Enter>", button_hover1)
+stop_button.bind("<Leave>", button_hover_leave1)
+resume_button.bind("<Enter>", button_hover2)
+resume_button.bind("<Leave>", button_hover_leave2)
+reset_button.bind("<Enter>", button_hover3)
+reset_button.bind("<Leave>", button_hover_leave3)
+lap_button.bind("<Enter>", button_hover4)
+lap_button.bind("<Leave>", button_hover_leave4)
 
 root.bind('<Configure>', resize)
 
