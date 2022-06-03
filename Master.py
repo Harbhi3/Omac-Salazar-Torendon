@@ -123,7 +123,7 @@ def clear():
     wig = middleframe.winfo_children()
     for b in wig:
         b.pack_forget()
-        resume_button.grid_forget()
+    resume_button.grid_forget()
     start_button.grid(row=1, column=0, sticky="nsew", padx=2)
     reset_button.grid(row=1, column=2, sticky="nsew", padx=2)
     lap_button.grid(row=1, column=4, sticky="nsew", padx=2)
